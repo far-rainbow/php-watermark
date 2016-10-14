@@ -89,7 +89,7 @@ function procFile($fname) {
             } else {
                 printf("Create PNG process failed --> $in_".PHP_EOL);
             }
-            imagedestroy ( $im );
+            imagedestroy ( $im ); 
             break;
         default :
             printf ( PHP_EOL . ">>> Obnaruzhen file nepodhodjashij dla obrabotki: $in_" . PHP_EOL . PHP_EOL);
