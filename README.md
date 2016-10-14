@@ -2,6 +2,7 @@
 PHP script to watermark JPEG,GIF and PNG pictures
 
 ##WINDOWS FILE SYSTEM ONLY!
+(you are free to rewrite it to *nix format, i`ll do it tomorrow)
 
 This script watermark the whole dir tree placed into "in" dir. The result copy of dir tree is in "out" dir.
 Also there are some huge JPEG files for benchmark purpose.
