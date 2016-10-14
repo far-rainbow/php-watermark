@@ -1,5 +1,8 @@
 <?php
+// GIT version
+
 //xdebug_start_trace();
+
 // //////////////////////
 // 1 IMAGETYPE_GIF
 // 2 IMAGETYPE_JPEG
