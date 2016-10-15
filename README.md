@@ -7,7 +7,7 @@ PHP script to watermark JPEG,GIF and PNG pictures.
 -- copy your images directory in "in" dir<br>
 -- start PHP CLI scrpit:<br>
 <br>
-		#server> php wm.php<br>
+		#server> php wm.php  <br>
 <br>
 -- wait until done<br>
 -- get watermarked files in "out" dir<br>
