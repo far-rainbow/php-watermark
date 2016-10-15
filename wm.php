@@ -10,6 +10,7 @@
 // //////////////////////
 
 $mTime = microtime(TRUE);
+$subDir = 0;
 
 // влияющие на отображение коэффициенты
 ini_set ( 'memory_limit', '256M' );
@@ -26,7 +27,7 @@ $threshold = 8; // плотность марок. чем больше значе
 $shadow = TRUE; // если тень отключить, то время выполнения увеличится на 15-20% ожидаемо, не проверял
                 
 $fn = getPath ( $in );
-procDir($fn,'./');
+procDir($fn,'');
 
 $mTime = microtime(TRUE) - $mTime;
 
@@ -37,17 +38,22 @@ printf("Обработка завершена. Время исполнения: 
 //
 
 function procDir($fn,$fCurDir) {
-    global $out;
-    //unset ($fn['.'],$fn['..']);
+    global $out,$subDir;
     foreach ( $fn as $fname => $fkey ) {
         if (! is_array ( $fkey )) {
-            $fname_ = procFile(substr($fCurDir,2) . $fkey);
+            procFile($fCurDir . $fkey);
         } else {
-            $curPath = $fCurDir . (string)$fname;
-            if (!is_dir($out . $curPath)) {
-                mkdir($out . $curPath);
+		if (!$subDir) {
+			$curPath = $fname;
+		} else {
+			$curPath = $fCurDir . $fname;
+		}
+            if (!is_dir($out . DIRECTORY_SEPARATOR . $curPath)) {
+                mkdir($out . DIRECTORY_SEPARATOR . $curPath);
             }
+	    $subDir++;
             procDir($fkey,$curPath . DIRECTORY_SEPARATOR);
+	    $subDir--;
         }
     }
 }
