@@ -1,4 +1,5 @@
 <?php
+trash
 // GIT version
 // 
 //xdebug_start_trace();
