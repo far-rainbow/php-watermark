@@ -1,6 +1,6 @@
 <?php
 // GIT version
-//
+// 
 //xdebug_start_trace();
 
 // //////////////////////
@@ -24,7 +24,7 @@ $prozr = 50; // прозрачность 15-30 нормально
 $threshold = 8; // плотность марок. чем больше значение, тем разряженнее, 8 нормально
 
 $shadow = TRUE; // если тень отключить, то время выполнения увеличится на 15-20% ожидаемо, не проверял
-
+                
 // цикл перебора файлов в директории входных данных
 $fn = getPath ( $in );
 procDir($fn,'./');
@@ -58,12 +58,12 @@ function procDir($fn,$fCurDir) {
 //
 
 function procFile($fname) {
-
+    
     global $in,$out,$JPEGquality,$PNGquality;
-
+    
     $in_ = $in . DIRECTORY_SEPARATOR . $fname;
     $out_ = $out . DIRECTORY_SEPARATOR . $fname;
-
+    
     $imType = exif_imagetype ( $in_ );
     switch ($imType) {
         case (IMAGETYPE_JPEG) :
@@ -94,7 +94,7 @@ function procFile($fname) {
             } else {
                 printf("Create PNG process failed --> $in_".PHP_EOL);
             }
-            imagedestroy ( $im );
+            imagedestroy ( $im ); 
             break;
         default :
             printf ( PHP_EOL . ">>> Obnaruzhen file nepodhodjashij dla obrabotki: $in_" . PHP_EOL . PHP_EOL);
@@ -104,89 +104,89 @@ function procFile($fname) {
 }
 
 function createWatermark($im) {
-    global $text, $font, $fontSZ, $prozr, $color1, $color2, $threshold,$shadow;
-
-    // создание копии входного изображения
-    $imx = imagesx ( $im );
-    $imy = imagesy ( $im );
-    $imtc = imagecreatetruecolor ( $imx, $imy );
-    imagecopy ( $imtc, $im, 0, 0, 0, 0, $imx, $imy );
-    imagesavealpha ( $im, true );
-    imagealphablending ( $im, true );
-
-    // цвета марок и прозрачность
-    $color1 = imagecolorallocate ( $im, 254, 254, 254 ); // цвет букв белый
-    $color2 = imagecolorallocate ( $im, 0, 0, 0 ); // тень чёрный
-    $color3 = imagecolorallocate ( $im, 255, 0, 0 ); // тестовый красный
-    $white = imagecolorallocatealpha ( $im, 255, 255, 255, 127 );
-
-    // imagefill ( $im, 0, 0, $white );
-
-    $zk_ = sqrt ( $imx + $imy ); // этот коэф нужен для учёта масштаба изображения
-    $shift = $zk_ * 2.75; // это сдвиг относительно центра изображения для коорд марки, чтобы она своим центром попадала в центр изображения, на глаз
-
-    $imxc = $imx / 2; // центр по гор
-    $imyc = $imy / 2; // центр по верт
-    $delta = $zk_ * $threshold; // начальный шаг спирали наложения
-
-    $u = $imxc - $shift; // вычисление начальной коорд наложения
-    $w = $imyc + $shift; //
-
-    $i = 1; // множитель шага спирали в начале равен единице
-
-    if ($shadow) imagettftext ( $im, $fontSZ + $zk_, 45, $u, $w, $color2, $font, $text ); // по центру первая марка
-    imagettftext ( $im, $fontSZ + $zk_, 45, $u + 2, $w + 2, $color1, $font, $text ); // по центру первая марка
-
-    // далее заливаем спиралью
-    while ( (($u >= - $imxc) && ($u <= $imx + $imxc)) && (($w >= - $imyc) && ($w <= $imy + $imyc)) ) {
-        $rnd = rand ( 0, 2 );
-        $j = $i;
-        while ( $j >= 1 ) {
-            $u = $u - $delta;
-            if ($shadow) imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd, $w + $rnd, $color2, $font, $text );
-            imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd + 2, $w + $rnd + 2, $color1, $font, $text );
-            $j --;
-        }
-
-        $j = $i;
-        while ( $j >= 1 ) {
-            $w = $w - $delta;
-            if ($shadow) imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd, $w + $rnd, $color2, $font, $text );
-            imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd + 2, $w + $rnd + 2, $color1, $font, $text );
-            $j --;
-        }
-
-        $i ++;
-        $delta = - $delta;
-    }
-
-    // слияние чистой копии и копии с нанесённой маркой с коэф. прозрачности равным $prozr
-    imagecopymerge ( $imtc, $im, 0, 0, 0, 0, $imx, $imy, $prozr );
-    return $imtc;
+	global $text, $font, $fontSZ, $prozr, $color1, $color2, $threshold,$shadow;
+	
+	// создание копии входного изображения
+	$imx = imagesx ( $im );
+	$imy = imagesy ( $im );
+	$imtc = imagecreatetruecolor ( $imx, $imy );
+	imagecopy ( $imtc, $im, 0, 0, 0, 0, $imx, $imy );
+	imagesavealpha ( $im, true );
+	imagealphablending ( $im, true );
+	
+	// цвета марок и прозрачность
+	$color1 = imagecolorallocate ( $im, 254, 254, 254 ); // цвет букв белый
+	$color2 = imagecolorallocate ( $im, 0, 0, 0 ); // тень чёрный
+	$color3 = imagecolorallocate ( $im, 255, 0, 0 ); // тестовый красный
+	$white = imagecolorallocatealpha ( $im, 255, 255, 255, 127 );
+	
+	// imagefill ( $im, 0, 0, $white );
+	
+	$zk_ = sqrt ( $imx + $imy ); // этот коэф нужен для учёта масштаба изображения
+	$shift = $zk_ * 2.75; // это сдвиг относительно центра изображения для коорд марки, чтобы она своим центром попадала в центр изображения, на глаз
+	
+	$imxc = $imx / 2; // центр по гор
+	$imyc = $imy / 2; // центр по верт
+	$delta = $zk_ * $threshold; // начальный шаг спирали наложения
+	
+	$u = $imxc - $shift; // вычисление начальной коорд наложения
+	$w = $imyc + $shift; //
+	
+	$i = 1; // множитель шага спирали в начале равен единице
+	
+	if ($shadow) imagettftext ( $im, $fontSZ + $zk_, 45, $u, $w, $color2, $font, $text ); // по центру первая марка
+	imagettftext ( $im, $fontSZ + $zk_, 45, $u + 2, $w + 2, $color1, $font, $text ); // по центру первая марка
+	                                                                                 
+	// далее заливаем спиралью
+	while ( (($u >= - $imxc) && ($u <= $imx + $imxc)) && (($w >= - $imyc) && ($w <= $imy + $imyc)) ) {
+		$rnd = rand ( 0, 2 );
+		$j = $i;
+		while ( $j >= 1 ) {
+			$u = $u - $delta;
+			if ($shadow) imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd, $w + $rnd, $color2, $font, $text );
+			imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd + 2, $w + $rnd + 2, $color1, $font, $text );
+			$j --;
+		}
+		
+		$j = $i;
+		while ( $j >= 1 ) {
+			$w = $w - $delta;
+			if ($shadow) imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd, $w + $rnd, $color2, $font, $text );
+			imagettftext ( $im, $fontSZ - $rnd + $zk_, 45, $u + $rnd + 2, $w + $rnd + 2, $color1, $font, $text );
+			$j --;
+		}
+		
+		$i ++;
+		$delta = - $delta;
+	}
+	
+	// слияние чистой копии и копии с нанесённой маркой с коэф. прозрачности равным $prozr
+	imagecopymerge ( $imtc, $im, 0, 0, 0, 0, $imx, $imy, $prozr );
+	return $imtc;
 }
 
 // директорию в массив, итератор
 
 function getPath($startPath) {
-    $ritit = new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( $startPath, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
-    $r = array ();
-
-    foreach ( $ritit as $splFileInfo ) {
-        $path = $splFileInfo->isDir () ? array (
-            $splFileInfo->getFilename () => array ()
-        ) : array (
-            $splFileInfo->getFilename ()
-        );
-
-        for($depth = $ritit->getDepth () - 1; $depth >= 0; $depth --) {
-            $path = array (
-                $ritit->getSubIterator ( $depth )->current ()->getFilename () => $path
-            );
-        }
-
-        $r = my_array_merge ( $r, $path );
-    }
-    return ($r);
+	$ritit = new RecursiveIteratorIterator ( new RecursiveDirectoryIterator ( $startPath, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+	$r = array ();
+	
+	foreach ( $ritit as $splFileInfo ) {
+		$path = $splFileInfo->isDir () ? array (
+				$splFileInfo->getFilename () => array ()
+		) : array (
+				$splFileInfo->getFilename () 
+		);
+		
+		for($depth = $ritit->getDepth () - 1; $depth >= 0; $depth --) {
+			$path = array (
+					$ritit->getSubIterator ( $depth )->current ()->getFilename () => $path
+			);
+		}
+		
+		$r = my_array_merge ( $r, $path );
+	}
+	return ($r);
 }
 
 // -- штатное слияние массивов не подходит, т.к. числовые ключи не сливаются! Баг обнаружился случайно
@@ -202,7 +202,7 @@ function my_array_merge ($arr,$ins) {
                 $arr[$k] = my_array_merge($arr[$k],$v);
             }
             else {
-
+                
                 while (isset($arr[$k]))
                     $k++;
                     $arr[$k] = $v;
