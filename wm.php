@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 //trash 2
+=======
+trash
+>>>>>>> branch 'master' of ssh://git@github.com/far-rainbow/php-watermark.git
 // GIT version
 // 
 //xdebug_start_trace();
