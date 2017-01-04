@@ -2,6 +2,7 @@
 --------------
 # php-watermark
 PHP script to watermark JPEG,GIF and PNG pictures.
+Also you might use it as PHP/GD-lib benchmark tool. For example my server result is ~8.5 seconds. For benchmarking and test there are some private Sony-A77 pictures added into repository. Excuse me for such a huge data =) Best wishes!
 
 ## USAGE:
 <p>
