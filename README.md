@@ -2,7 +2,10 @@
 --------------
 # php-watermark
 PHP script to watermark JPEG,GIF and PNG pictures.
-Also you might use it as PHP/GD-lib benchmark tool. For example my server result is ~8.5 seconds. For benchmarking and test there are some private Sony-A77 pictures added into repository. Excuse me for such a huge data =) Best wishes!
+Also you might use it as PHP/GD-lib benchmark tool.
+- For example:
+-- my Hezner test server result is ~8.5 seconds. For benchmarking and test there are some private Sony-A77 pictures added into repository. Excuse me for such a huge data =) Best wishes!
+-- my Intel Xeon 5320 (4 cores, 8 Gb) do this script with current file setup in ~40 seconds on Win7 + PHP 5.6
 
 ## USAGE:
 <p>
@@ -17,13 +20,7 @@ Also you might use it as PHP/GD-lib benchmark tool. For example my server result
 -- PROFIT!<br>
 </p>
 
-# INFO
-
-This script watermark the whole dir tree placed into "in" dir. The result copy of dir tree is in "out" dir.
-Also there are some huge JPEG files for benchmark purpose.
-For example, my Intel Xeon 5320 (4 cores, 8 Gb) do this script with current file setup in ~40 seconds on Win7 + PHP 5.6
-
-Also you are welcome to post your results in comments.
+You are welcome to post your results in comments.
 
 All this staff needs polishing and recycling =) not OOP, but just name and call styling
 
