@@ -37,25 +37,25 @@ printf("Обработка завершена. Время исполнения: 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 //
 
-function procDir($fn,$fCurDir) {
-    global $out,$subDir;
-    foreach ( $fn as $fname => $fkey ) {
-        if (! is_array ( $fkey )) {
-            procFile($fCurDir . $fkey);
-        } else {
-		if (!$subDir) {
-			$curPath = $fname;
+function procDir($fn, $fCurDir) {
+	global $out, $subDir;
+	foreach ( $fn as $fname => $fkey ) {
+		if (! is_array ( $fkey )) {
+			procFile ( $fCurDir . $fkey );
 		} else {
-			$curPath = $fCurDir . $fname;
+			if (! $subDir) {
+				$curPath = $fname;
+			} else {
+				$curPath = $fCurDir . $fname;
+			}
+			if (! is_dir ( $out . DIRECTORY_SEPARATOR . $curPath )) {
+				mkdir ( $out . DIRECTORY_SEPARATOR . $curPath );
+			}
+			$subDir ++;
+			procDir ( $fkey, $curPath . DIRECTORY_SEPARATOR );
+			$subDir --;
 		}
-            if (!is_dir($out . DIRECTORY_SEPARATOR . $curPath)) {
-                mkdir($out . DIRECTORY_SEPARATOR . $curPath);
-            }
-	    $subDir++;
-            procDir($fkey,$curPath . DIRECTORY_SEPARATOR);
-	    $subDir--;
-        }
-    }
+	}
 }
 
 // обработка файла
