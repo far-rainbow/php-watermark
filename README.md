@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/far-rainbow/php-watermark.svg?branch=master)](https://travis-ci.org/far-rainbow/php-watermark)
 # PRIVATE REPO
 --------------
 # php-watermark
