@@ -11,3 +11,5 @@ php:
 branches:
   only:
   - master
+
+script: wm.php
