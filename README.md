@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/far-rainbow/php-watermark.svg?branch=master)](https://travis-ci.org/far-rainbow/php-watermark)
+[![CodeFactor](https://www.codefactor.io/repository/github/far-rainbow/php-watermark/badge)](https://www.codefactor.io/repository/github/far-rainbow/php-watermark)
 # PRIVATE REPO
 --------------
 # php-watermark
