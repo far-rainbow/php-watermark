@@ -1,5 +1,5 @@
 <?php
-
+ini_set ( 'memory_limit', '256M' );
 // GIT version
 // 
 //xdebug_start_trace();
