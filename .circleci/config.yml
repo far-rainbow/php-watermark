@@ -19,5 +19,5 @@ jobs:
     steps:
       - checkout
 
-      - run: wm.php
+      - run: php wm.php
       
