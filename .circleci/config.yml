@@ -21,7 +21,7 @@ jobs:
       - run: sudo apt-get install -y libpng-dev libjpeg-dev
       - run:
           name: pre-build config
-          command: docker-php-ext-configure gd --with-freetype --with-jpeg
+          command: sudo docker-php-ext-configure gd --with-freetype --with-jpeg
       - run:
           name: Install PHP Extensions
           command: sudo docker-php-ext-install gd exif
