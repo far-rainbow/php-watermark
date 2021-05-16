@@ -17,7 +17,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run: sudo apt-get install -y libpng-dev
+      - run: sudo apt-get install -y libpng12-dev
       - run:
           name: Install PHP Extensions
           command: sudo docker-php-ext-install gd
