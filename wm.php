@@ -26,7 +26,7 @@ $threshold = 8; // плотность марок. чем больше значе
 $shadow = TRUE; // если тень отключить, то время выполнения увеличится на 15-20% ожидаемо, не проверял
 
 if(!is_dir($out)) {
-    printf("Check: No output directory found. Created $out dir.");
+    printf("Check: No output directory found. Created $out dir.\n");
     mkdir($out,755,true);
 }
 
