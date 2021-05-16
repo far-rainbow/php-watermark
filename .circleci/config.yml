@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - run: sudo apt update
-      - run: sudo apt-get install -y libpng-dev libjpeg-dev freetype2
+      - run: sudo apt-get install -y libpng-dev libjpeg-dev libfreetype-dev
       - run:
           name: pre-build config
           command: sudo docker-php-ext-configure gd --with-freetype --with-jpeg
