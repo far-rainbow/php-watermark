@@ -13,11 +13,10 @@ $mTime = microtime(TRUE);
 $subDir = 0;
 
 // влияющие на отображение коэффициенты
-ini_set ( 'memory_limit', '256M' );
-$in = './in'; // название директории входных данных, можно полный путь
-$out = './out'; // название директории выходных данных, можно полный путь
+$in = 'in'; // название директории входных данных, можно полный путь
+$out = 'out'; // название директории выходных данных, можно полный путь
 $text = 'KAMENKA.SU'; // текст марки
-$font = "./ARIAL.TTF"; // файл шрифта
+$font = realpath('ARIAL.TTF'); // файл шрифта
 $JPEGquality = 70; // 0 = маленький файл и ужасное качество, 100 = отличное качество и огромный файл. Оптимум это 60-90
 $PNGquality = 5; // 0 = no comression, 9 = max compression
 $fontSZ = 4; // размер текста
@@ -25,9 +24,11 @@ $prozr = 50; // прозрачность 15-30 нормально
 $threshold = 8; // плотность марок. чем больше значение, тем разряженнее, 8 нормально
 
 $shadow = TRUE; // если тень отключить, то время выполнения увеличится на 15-20% ожидаемо, не проверял
-                
+
+if(!is_dir($out)) mkdir(out,755,true);
+
 $fn = getPath ( $in );
-procDir($fn,'');
+watermarkAllFilesInThisDirRecursively($fn,'');
 
 $mTime = microtime(TRUE) - $mTime;
 
@@ -37,7 +38,7 @@ printf("Обработка завершена. Время исполнения: 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 //
 
-function procDir($fn, $fCurDir) {
+function watermarkAllFilesInThisDirRecursively($fn, $fCurDir) {
 	global $out, $subDir;
 	foreach ( $fn as $fname => $fkey ) {
 		if (! is_array ( $fkey )) {
@@ -52,7 +53,7 @@ function procDir($fn, $fCurDir) {
 				mkdir ( $out . DIRECTORY_SEPARATOR . $curPath );
 			}
 			$subDir ++;
-			procDir ( $fkey, $curPath . DIRECTORY_SEPARATOR );
+			watermarkAllFilesInThisDirRecursively ( $fkey, $curPath . DIRECTORY_SEPARATOR );
 			$subDir --;
 		}
 	}
@@ -122,8 +123,8 @@ function createWatermark($im) {
 	// цвета марок и прозрачность
 	$color1 = imagecolorallocate ( $im, 254, 254, 254 ); // цвет букв белый
 	$color2 = imagecolorallocate ( $im, 0, 0, 0 ); // тень чёрный
-	$color3 = imagecolorallocate ( $im, 255, 0, 0 ); // тестовый красный
-	$white = imagecolorallocatealpha ( $im, 255, 255, 255, 127 );
+	//$color3 = imagecolorallocate ( $im, 255, 0, 0 ); // тестовый красный
+	//$white = imagecolorallocatealpha ( $im, 255, 255, 255, 127 );
 	
 	// imagefill ( $im, 0, 0, $white );
 	
