@@ -25,7 +25,10 @@ $threshold = 8; // плотность марок. чем больше значе
 
 $shadow = TRUE; // если тень отключить, то время выполнения увеличится на 15-20% ожидаемо, не проверял
 
-if(!is_dir($out)) mkdir(out,755,true);
+if(!is_dir($out)) {
+    printf("Check: No output directory found. Created $out dir.");
+    mkdir($out,755,true);
+}
 
 $fn = getPath ( $in );
 watermarkAllFilesInThisDirRecursively($fn,'');
