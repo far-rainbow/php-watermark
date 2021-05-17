@@ -27,7 +27,7 @@ $shadow = TRUE; // если тень отключить, то время вып�
 
 if(!is_dir($out)) {
     printf("Check: No output directory found. Created $out dir.\n");
-//    mkdir($out,755,true);
+    mkdir($out,755,true);
 }
 
 $fn = getPath ( $in );
