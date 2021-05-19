@@ -23,6 +23,9 @@ Also you might use it as PHP/GD-lib benchmark tool.
 -- PROFIT!<br>
 </p>
 
+## Jenkins auto test
+-- use 'make' shell command to start the benchmark
+
 You are welcome to post your results in comments.
 
 All this staff needs polishing and recycling =) not OOP, but just name and call styling
