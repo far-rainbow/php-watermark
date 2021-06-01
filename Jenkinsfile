@@ -2,8 +2,22 @@ pipeline {
   agent any
   stages {
     stage('START') {
-      steps {
-        echo 'Docker hub login...'
+      parallel {
+        stage('START') {
+          steps {
+            echo 'Docker hub login...'
+          }
+        }
+
+        stage('HUB LOGIN') {
+          steps {
+            timestamps() {
+              echo 'Time:'
+            }
+
+          }
+        }
+
       }
     }
 
