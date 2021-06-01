@@ -13,6 +13,12 @@ pipeline {
       }
     }
 
+    stage('PUSH') {
+      steps {
+        sh 'make push'
+      }
+    }
+
   }
   environment {
     REGISTRY = 'hub_registry'
