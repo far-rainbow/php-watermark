@@ -7,9 +7,15 @@ pipeline {
       }
     }
 
-    stage('BUILD & BENCH') {
+    stage('BUILD') {
       steps {
-        sh 'make php-watermark'
+        sh 'make build'
+      }
+    }
+
+    stage('BENCH') {
+      steps {
+        sh 'make bench'
       }
     }
 
