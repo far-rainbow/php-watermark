@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('START') {
       steps {
-        echo 'TEST MSG'
+        echo 'Docker hub login...'
       }
     }
 
