@@ -15,13 +15,9 @@ pipeline {
 
     stage('PUSH') {
       steps {
-        sh 'make push'
+        sh '        sh "> .env"'
       }
     }
 
-  }
-  environment {
-    REGISTRY = 'hub_registry'
-    IMAGE_TAG = 'master'
   }
 }
