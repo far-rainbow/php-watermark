@@ -15,7 +15,7 @@ pipeline {
 
     stage('PUSH') {
       steps {
-        sh '        sh "> .env"'
+        sh '       > .env'
       }
     }
 
