@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-cli-alpine
 # @see https://hub.docker.com/r/jpswade/php7.4-fpm-alpine
 MAINTAINER Agent Software <dev@agentsoftware.net>
 
@@ -40,11 +40,6 @@ RUN printf "\n" | pecl install \
 RUN printf "\n" | pecl install \
                 pcov && \
                 docker-php-ext-enable pcov
-
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-        && php composer-setup.php \
-        && php -r "unlink('composer-setup.php');" \
-        && mv composer.phar /usr/bin/composer
 
 COPY . /app
 WORKDIR /app
