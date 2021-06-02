@@ -21,14 +21,11 @@ pipeline {
                         usernameVariable: 'USER',
                         passwordVariable: 'PASSWORD'
                     )
-         ])
-        {
-          sh "docker login -u=$USER -p='$PASSWORD'"
-        }
-        sh "REGISTRY=kamenka/kit IMAGE_TAG=master-1 make push"
-        }
+         ]) {
+              sh "docker login -u=$USER -p='$PASSWORD'"
+         }
+         sh "REGISTRY=kamenka/kit IMAGE_TAG=master-1 make push"
       }
     }
-
   }
 }
