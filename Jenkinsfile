@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('BUILD') {
       steps {
-        sh 'make build'
+        sh 'REGISTRY=kamenka/kit IMAGE_TAG=master-1 make build'
       }
     }
 
