@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('BUILD') {
       steps {
-        sh 'REGISTRY=kamenka/kit IMAGE_TAG=master-1 make build'
+        sh 'REGISTRY=kamenka IMAGE_TAG=master-1 make build'
       }
     }
 
@@ -24,7 +24,7 @@ pipeline {
          ]) {
               sh "docker login -u=$USER -p='$PASSWORD'"
          }
-         sh "REGISTRY=kamenka/kit IMAGE_TAG=master-1 make push"
+         sh "REGISTRY=kamenka IMAGE_TAG=master-1 make push"
       }
     }
   }
